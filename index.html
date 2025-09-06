@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Priti Kumari - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="tailwind.min.css" rel="stylesheet">
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script>  -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
@@ -23,7 +25,7 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-<nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+<nav class="fixed top-0 w-full bg-white z-50 shadow-sm">
     <div class="max-w-6xl mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
             
@@ -50,7 +52,16 @@
             </button>
         </div>
     </div>
+<!-- Mobile Menu (hidden by default) -->
+<div id="mobile-menu-links" class="hidden flex-col space-y-4 mt-4 md:hidden bg-white shadow-lg rounded-lg p-4">
+  <a href="#home" class="block text-gray-600 hover:text-purple-600">Home</a>
+  <a href="#about" class="block text-gray-600 hover:text-purple-600">About</a>
+  <a href="#projects" class="block text-gray-600 hover:text-purple-600">Projects</a>
+  <a href="#skills" class="block text-gray-600 hover:text-purple-600">Skills</a>
+  <a href="#contact" class="block text-gray-600 hover:text-purple-600">Contact</a>
+</div>
 </nav>
+
 
     <!-- Hero Section -->
 <section id="home" class="gradient-bg min-h-screen flex items-center justify-center text-white">
@@ -70,7 +81,7 @@
 
     <!-- Buttons -->
     <!-- Buttons -->
-<div class="space-x-4 fade-in stagger-3">
+<div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 justify-center items-center fade-in stagger-3">
   <!-- Resume Button -->
   <a href="resume.txt.pdf" target="_blank" 
      class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors">
@@ -81,8 +92,11 @@
   <a href="#contact" 
      class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors">
     Contact Me
-  </a>
+  </a>
 </div>
+
+
+
 
   </div>
 </section>
@@ -220,7 +234,7 @@ responsive, user-friendly interface for smooth experience.</p>
                                 <span class="text-gray-600">100%</span>
                             </div>
                             <div class="bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full skill-bar" style="width: 90%"></div>
+                                <div class="bg-purple-600 h-2 rounded-full skill-bar" style="width: 100%"></div>
                             </div>
                         </div>
                         <div>
@@ -335,29 +349,53 @@ responsive, user-friendly interface for smooth experience.</p>
                 </div>
                 <div>
                     <form class="space-y-6" id="contact-form">
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Name</label>
-                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Your name">  
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="your.email@example.com">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Tell me about your project..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
-                            Submit
-                        </button>
-                        <p class="text-sm text-gray-500 text-center">
-                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded"></span> 
-                        </p>
-                    </form>
+  <div>
+    <label class="block text-gray-700 font-medium mb-2">Name</label>
+    <input type="text" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Your name">  
+  </div>
+  <div>
+    <label class="block text-gray-700 font-medium mb-2">Email</label>
+    <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="your.email@example.com">
+  </div>
+  <div>
+    <label class="block text-gray-700 font-medium mb-2">Message</label>
+    <textarea name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Tell me about your project..."></textarea>
+  </div>
+  <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+    Submit
+  </button>
+  <p class="text-sm text-gray-500 text-center">
+    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded"></span> 
+  </p>
+</form>
+
                 </div>
             </div>
         </div>
     </section>
+    <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = document.getElementById('contact-form');
+    
+    const scriptURL ="https://script.google.com/macros/s/AKfycbzddz8Ddeil6-uVOx0eURlfvuNH2reXPumBUhOYcvpMJUuLp1qfDBoATOp-nSVq683X1Q/exec"; 
+    
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        alert('✅ Thank you! Your message has been sent.');
+        form.reset();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert('❌ Oops! Something went wrong.');
+      });
+  });
+</script>
+
+
+
+
+
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
@@ -390,13 +428,14 @@ responsive, user-friendly interface for smooth experience.</p>
         });
 
         // Mobile menu toggle
-        const mobileMenu = document.getElementById('mobile-menu');
-        const nav = document.querySelector('nav');
-        
-        mobileMenu.addEventListener('click', function() {
-            // Simple mobile menu toggle (you can expand this)
-            alert('Mobile menu would open here in a full implementation');
-        });
+        // Mobile menu toggle
+const mobileMenuBtn = document.getElementById('mobile-menu');
+const mobileMenuLinks = document.getElementById('mobile-menu-links');
+
+mobileMenuBtn.addEventListener('click', () => {
+  mobileMenuLinks.classList.toggle('hidden');
+});
+
 
         // Contact form submission
         document.getElementById('contact-form').addEventListener('submit', function(e) {
